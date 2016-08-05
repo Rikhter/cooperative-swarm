@@ -3,14 +3,12 @@ module.exports = function(grunt) {
     mochaTest: {
       test: {
         options: {
-          reporter: 'spec',
-          captureFile: 'results.txt', // Optionally capture the reporter output to a file
-          quiet: false, // Optionally suppress output to standard out (defaults to false)
-          clearRequireCache: false // Optionally clear the require cache before running tests (defaults to false)
+          reporter: 'spec'
         },
         src: ['main/test/**/*.js']
       }
     },
+    clean: ['dist/*'],
     copy: {
       main: {
         expand: true,
@@ -27,6 +25,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('default', ['mochaTest', 'copy']);
+  grunt.registerTask('default', ['mochaTest', 'clean', 'copy']);
 };

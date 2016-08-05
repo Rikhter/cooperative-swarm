@@ -1,7 +1,7 @@
 
 module.exports = {
-  SPAWN_NAME: 'Cap',
-
+  MAIN_SPAWN: 'Capital',
+  CREEP_QUEEN: 'CREEP_QUEEN',
   Roles: {
     WORKER: 'worker'
   }

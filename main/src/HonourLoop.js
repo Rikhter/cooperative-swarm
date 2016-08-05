@@ -1,27 +1,35 @@
 
 var moduleResolver = require('ModuleResolver');
 
-var CollectorRole = require(moduleResolver.resolvePath('Role.Collector'));
 var HonourConstants = require(moduleResolver.resolvePath('HonourConstants'));
+CREEP_QUEEN = HonourConstants.CREEP_QUEEN;
+MAIN_SPAWN = HonourConstants.MAIN_SPAWN;
 
 module.exports = (function() {
-  function HonourLoop(dependencies) {
-    for(var dependency in dependencies) {
-      this[dependency] = dependencies[dependency];
-    }
+  /**
+   * @param {Game} game
+   * @class
+   */
+  function HonourLoop(game) {
+    this.game = game;
   }
 
-  HonourLoop.prototype.run = function() {
-    var creepCount = 0;
-    var creeps = this.game.creeps;
-    for(var i in creeps) {
-      CollectorRole.doHarvestSequence(creeps[i]);
-      creepCount++;
-    }
+  /**
+   * @type {Game}
+   */
+  HonourLoop.prototype.game = {};
 
-    if(creepCount < 2) {
-      var spawn = this.game.spawns[HonourConstants.SPAWN_NAME];
-      CollectorRole.createCollector(spawn);
+  HonourLoop.prototype.run = function() {
+    if(Object.keys(this.game.creeps).length != 1) {
+      this.game.spawns[MAIN_SPAWN].createCreep([MOVE, WORK, CARRY], CREEP_QUEEN);
+    } else {
+      var creep = this.game.creeps[CREEP_QUEEN];
+      if (creep != undefined && creep.room != undefined) {
+        var sources = creep.room.find(FIND_SOURCES);
+        if (sources != undefined) {
+          creep.harvest(sources[0]);
+        }
+      }
     }
   };
 

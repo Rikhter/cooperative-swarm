@@ -1,5 +1,4 @@
 
-
 module.exports = (function() {
   var main = {};
   main.loop = function() {
