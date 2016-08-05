@@ -1,0 +1,50 @@
+
+
+  Honour Loop
+    run
+      ✓ should trigger the worker manager
+
+  main module
+    ✓ should define the main loop function
+
+  Role - Builder
+    build
+      find construction site
+        ✓ should find the first available structure
+      next to construction site
+        ✓ should return result of the isNearTo function
+        1) should return result of the isNearTo function
+
+  Role - Worker
+    create worker
+      ✓ should create a new creep that has is marked as a worker creep
+    harvest
+      ✓ should harvest if adjacent
+      ✓ should move to source if not adjacent
+      find nearest source
+        ✓ should return the nearest source
+        ✓ should return the nearest source
+    is full
+      ✓ should return true when carry module is holding max energy.
+      ✓ should return false when carry module is not holding maximum energy.
+
+
+  11 passing (36ms)
+  1 failing
+
+  1) Role - Builder build next to construction site should return result of the isNearTo function:
+     TypeError: Attempted to wrap isNearTo which is already wrapped
+    at checkWrappedMethod (node_modules/sinon/lib/sinon/util/core.js:81:29)
+    at Object.wrapMethod (node_modules/sinon/lib/sinon/util/core.js:121:21)
+    at Object.expects (node_modules/sinon/lib/sinon/mock.js:88:27)
+    at Context.<anonymous> (main/test/Role.BuilderSpec.js:52:26)
+  
+  --------------
+  Error: Stack Trace for original
+    at Object.wrapMethod (node_modules/sinon/lib/sinon/util/core.js:140:34)
+    at Object.expects (node_modules/sinon/lib/sinon/mock.js:88:27)
+    at Context.<anonymous> (main/test/Role.BuilderSpec.js:45:26)
+  
+
+
+
